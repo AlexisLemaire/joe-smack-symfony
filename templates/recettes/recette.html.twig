@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ recette.title }} {% endblock %}
+
+{% block body %}
+    <h1>{{ recette.title }}</h1>
+
+    <a href="{{ path("recettes_update", {id: recette.id}) }}">Mettre à jour la recette</a>
+    <a href="{{ path("recettes_delete", {id: recette.id}) }}">Supprimer la recette</a>
+    <div>  
+        Type: {{ recette.type }} <br />
+        Prix: {{ recette.prix }} <br />
+        Nombre de personnes: {{ recette.nbPersonnes }} <br />
+        Temps de préparation: {{ recette.prepDuration }} <br />
+        Ingrédients: {{ recette.ingredients }} <br />
+        Recette:
+        <br /><br />
+       
+        <div>
+            {{ recette.text }}
+        </div>
+    </div>
+{% endblock %}

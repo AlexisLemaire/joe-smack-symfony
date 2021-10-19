@@ -3,17 +3,30 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
     </head>
     <body>
+        {% for type,msgs in app.flashes %} 
+            {% for msg in msgs %}
+                <div class="alert-{{type}}"> {{ msg }} </div>
+            {% endfor %}
+        {% endfor %}
+        <nav>
+            <a href="{{ path('recettes_list', {type: "entree"}) }}"><button>Entree</button></a>
+            <a href="{{ path('recettes_list', {type: "plat"}) }}"><button>Plat</button></a>
+            <a href="{{ path('recettes_list', {type: "patisserie"}) }}"><button>Patisserie</button></a>
+            <a href="{{ path('recettes_list', {type: "az"}) }}"><button>A-Z</button></a>
+            <a href="{{ path('recettes_ajout') }}"><button>Ajout Recette</button></a>
+            {% if app.user is null %}
+                <a href="{{ path('app_login') }}"><button>Connexion</button></a>
+                <a href="{{ path('app_register') }}"><button>Inscription</button></a>
+            {% else %}
+                <a href="{{ path('app_logout') }}"><button>Deconnexion</button></a>
+            {% endif %}
+        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>
