@@ -1,6 +1,7 @@
 nav {
-    height: 65px;
+    height: 70px;
     box-shadow: 20px 15px 5px grey;
+    border: 4px solid;
 }
 
 nav button {
@@ -30,8 +31,8 @@ nav img {
 
 main {
     padding: 2%;
-    margin: 0.5%;
-    height: 640px;
+    margin: 0.4%;
+    height: 635px;
     width: 99%;
     background-size: 100% 100%;
     text-align: center;
@@ -39,9 +40,13 @@ main {
 }
 
 main img {
-    height: 90%;
-    border-radius: 15%;
-    border: 1px solid;
+    width: 40%;
+    height: 300px;
+    border-radius: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%;
+    border: 4px solid;
 }
 
 form {
@@ -50,8 +55,9 @@ form {
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 5%;
-    padding: 2%;
-    border: 1px solid;
+    padding: 3%;
+    border: 4px solid white;
+    border-radius: 10%;
 }
 
 form label, form input {
@@ -73,6 +79,7 @@ form input:hover, form input:focus {
 
 .RC-List {
     border-radius: 20%;
+    border: 4px solid white; 
     width: 70%;
     margin-left: 15%;
     margin-top: 1%;
@@ -80,7 +87,7 @@ form input:hover, form input:focus {
     background-color: black;
     color: white;
     font-weight: bold;
-    border: 1px solid;
+    
 }
 
 .RC-List img {
@@ -88,14 +95,25 @@ form input:hover, form input:focus {
     height: 450px;
     margin-left: 20%;
     margin-right: 20%;
+    margin-top: 1%;
 }
 
 .RC-Item {
+    border-radius: 10%;
+    border: 4px solid white; 
     margin-left: 10%;
     width: 80%;
-    padding: 2%;
+    padding: 4%;
     background-color: black;
     color: white;
+}
+
+.RC-Item img {
+    width: 60%;
+    height: 400px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 1%;
 }
 
 .RC-Body {
