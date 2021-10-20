@@ -76,11 +76,18 @@ form input:hover, form input:focus {
     width: 70%;
     margin-left: 15%;
     margin-top: 1%;
-    padding: 3%;
+    padding: 4%;
     background-color: black;
     color: white;
     font-weight: bold;
     border: 1px solid;
+}
+
+.RC-List img {
+    width: 60%;
+    height: 450px;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .RC-Item {
