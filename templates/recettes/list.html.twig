@@ -3,14 +3,15 @@
 {% block title %} Liste des {{ type }}s {% endblock %}
 
 {% block body %}
-    <h1>Liste des {{ type }}s</h1>
-
-    {% for recette in recettes %}
-        <div class="bg-dark text-light">
-            {{ recette.title }} <br />
-            Ingredients: {{ recette.ingredients }}
-            <a href="{{ path("recettes_recette", {id: recette.id}) }}"> <button> Voir la recette </button></a>
-        </div>
-        <br />
-    {% endfor %}
+{% for recette in recettes %}
+    <div class="RC-List">
+        <a href="{{ path("recettes_recette", {id: recette.id}) }}"> 
+            <button class="w-100 m-2 btn btn-primary"> 
+                {{ recette.title }}  
+            </button>
+        </a>
+        <img src="{{ asset('img/'~recette.imgName) }}" />
+    </div>
+    <br />
+{% endfor %}
 {% endblock %}

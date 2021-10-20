@@ -3,17 +3,17 @@
 {% block title %} Ajouter une recette {% endblock %}
 
 {% block body %}
-    <h1>Ajouter une recette</h1>
-
-    {{ form_start(form) }}
-        {{ form_row(form.title) }}
-        {{ form_row(form.type) }}
-        {{ form_row(form.prix) }}
-        {{ form_row(form.prepDuration) }}
-        {{ form_row(form.nbPersonnes) }}
-        {{ form_row(form.ingredients) }}
-        {{ form_row(form.imgName) }}
-        {{ form_row(form.text) }}
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(form) }}
+{{ form_start(form) }}
+    <h1 class="h3 mb-3 font-weight-normal">Ajouter une recette</h1>
+    <strong> Vous pouvez ajouter une recette via cette page. L'ajout ne sera validé que si votre compte possède le rôle administrateur. </strong> <br /><br />
+    {{ form_row(form.title) }}
+    {{ form_row(form.type) }}
+    {{ form_row(form.prix) }}
+    {{ form_row(form.prepDuration) }}
+    {{ form_row(form.nbPersonnes) }}
+    {{ form_row(form.ingredients) }}
+    {{ form_row(form.img) }}
+    {{ form_row(form.text) }}
+    <button type="submit" class="btn w-100 btn-primary">Ajouter</button>
+{{ form_end(form) }}
 {% endblock %}

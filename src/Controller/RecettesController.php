@@ -16,9 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 */
 class RecettesController extends AbstractController
 {
-
     /**
-     * @Route("/home", name="home")
+     * @Route("/home", name="home");
      */
     public function home(): Response
     {
@@ -57,13 +56,23 @@ class RecettesController extends AbstractController
     {
         $recette = new Recettes();
         $form = $this->createForm(AjoutRecetteFormType::class, $recette);
-        $form->handleRequest($request);
+        $form->handleRequest($request); 
 
         if($form->isSubmitted() && $form->isValid()){
-            $em->persist($recette);
-            $em->flush();
-            $this->addFlash("success", "La recette a bien été ajoutée");
-            return $this->redirectToRoute("list", [ "type" => $recette->getType() ]);
+            if(!$this->getUser()){
+                $this->addFlash("danger", "Vous devez être connecté avec un compte administrateur pour ajouter une recette");
+            }
+            else if(!in_array("ROLE_ADMIN",$this->getUser()->getRoles())){
+               $this->addFlash("danger", "Vous devez être administrateur pour ajouter une recette");
+            } else {
+                $img = $form['img']->getData();
+                $img->move("../public/img/", $img->getClientOriginalName());
+                $recette->setImgName($img->getClientOriginalName());
+                $em->persist($recette);
+                $em->flush();
+                $this->addFlash("success", "La recette a bien été ajoutée");
+                return $this->redirectToRoute("recettes_list", [ "type" => $recette->getType() ]);
+            }
         }
         return $this->render('recettes/ajout.html.twig', [ "form" => $form->createView() ]);
     }
@@ -78,9 +87,21 @@ class RecettesController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $em->flush();
-            $this->addFlash("success", "La recette a bien été mise à jour");
-            return $this->redirectToRoute("list", [ "type" => $recette->getType() ]);
+            if(!$this->getUser()){
+                $this->addFlash("danger", "Vous devez être connecté avec un compte administrateur pour modifier une recette");
+            }
+            else if(!in_array("ROLE_ADMIN",$this->getUser()->getRoles())){
+                $this->addFlash("danger", "Vous devez être administrateur pour modifier une recette");
+            } else {
+                $img = $form['img']->getData();
+                if($img){
+                    $img->move("../public/img/", $img->getClientOriginalName());
+                    $recette->setImgName($img->getClientOriginalName());
+                }
+                $em->flush();
+                $this->addFlash("success", "La recette a bien été mise à jour");
+                return $this->redirectToRoute("recettes_list", [ "type" => $recette->getType() ]);
+            } 
         }
         return $this->render('recettes/update.html.twig', [ "form" => $form->createView() ]);
     }
@@ -90,10 +111,16 @@ class RecettesController extends AbstractController
      */
     public function delete($id, RecettesRepository $repo, EntityManagerInterface $em): Response
     {
-        $recette = $repo->find($id);
-        $em->remove($recette);
-        $em->flush();
-        $this->addFlash("success", "La recette a bien été supprimée");
-        return $this->redirectToRoute("list", [ "type" => $recette->getType() ]);
+        if(in_array("ROLE_ADMIN",$this->getUser()->getRoles())){
+            $recette = $repo->find($id);
+            $em->remove($recette);
+            $em->flush();
+            $this->addFlash("success", "La recette a bien été supprimée");
+            return $this->redirectToRoute("recettes_list", [ "type" => $recette->getType() ]);
+        } else {
+            $this->addFlash("danger", "Vous devez être administrateur pour supprimer une recette");
+            return $this->redirectToRoute("recettes_recette", [ "id" => $id]);
+        }
+        
     }
 }

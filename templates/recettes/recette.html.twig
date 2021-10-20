@@ -3,21 +3,23 @@
 {% block title %} {{ recette.title }} {% endblock %}
 
 {% block body %}
-    <h1>{{ recette.title }}</h1>
+<div class="RC-Item">
+    <h1 class="h3 mb-3 font-weight-normal">{{ recette.title }}</h1>
 
-    <a href="{{ path("recettes_update", {id: recette.id}) }}">Mettre à jour la recette</a>
-    <a href="{{ path("recettes_delete", {id: recette.id}) }}">Supprimer la recette</a>
-    <div>  
-        Type: {{ recette.type }} <br />
-        Prix: {{ recette.prix }} <br />
-        Nombre de personnes: {{ recette.nbPersonnes }} <br />
-        Temps de préparation: {{ recette.prepDuration }} <br />
-        Ingrédients: {{ recette.ingredients }} <br />
+    <a href="{{ path("recettes_update", {id: recette.id}) }}"><button class="RC-Btn">Mettre à jour la recette</button></a> <br />
+    <a href="{{ path("recettes_delete", {id: recette.id}) }}"><button class="RC-Btn">Supprimer la recette</button></a> <br /><br />
+    <img src="{{ asset('img/'~recette.imgName) }}" /> <br /><br />
+
+    <div class="RC-Body">  
+        <strong> Type: </strong> {{ recette.type }} <br />
+        <strong> Prix: </strong> {{ recette.prix }} <br />
+        <strong> Nombre de personnes: </strong> {{ recette.nbPersonnes }} <br />
+        <strong> Temps de préparation: </strong> {{ recette.prepDuration }} <br />
+        <strong> Ingrédients: </strong> {{ recette.ingredients }} <br /><br/>
+
         Recette:
         <br /><br />
-       
-        <div>
-            {{ recette.text }}
-        </div>
+        <div> {{ recette.text }} </div>
     </div>
+</div>
 {% endblock %}
