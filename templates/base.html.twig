@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
         {% block stylesheets %}{% endblock %}
         {% block javascripts %}{% endblock %}
@@ -38,7 +38,6 @@
             var url = window.location.href; 
             var params = url.split("/")[5];
             var mainElem = document.getElementById("main");
-            console.log(params);
             if(window.screen.width < 600){
                 switch (params) {
                 case "entree": mainElem.style.backgroundImage = "url(https://i.ibb.co/tDpG2tk/entree-Phone.jpg)"; break;
