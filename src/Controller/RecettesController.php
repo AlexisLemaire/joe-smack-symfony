@@ -66,8 +66,10 @@ class RecettesController extends AbstractController
                $this->addFlash("danger", "Vous devez être administrateur pour ajouter une recette");
             } else {
                 $img = $form['img']->getData();
-                $img->move("../public/img/", $img->getClientOriginalName());
-                $recette->setImgName($img->getClientOriginalName());
+                if($img){
+                    $img->move("../public/img/", $img->getClientOriginalName());
+                    $recette->setImgName($img->getClientOriginalName());
+                }
                 $em->persist($recette);
                 $em->flush();
                 $this->addFlash("success", "La recette a bien été ajoutée");
@@ -103,7 +105,7 @@ class RecettesController extends AbstractController
                 return $this->redirectToRoute("recettes_list", [ "type" => $recette->getType() ]);
             } 
         }
-        return $this->render('recettes/update.html.twig', [ "form" => $form->createView() ]);
+        return $this->render('recettes/update.html.twig', [ "form" => $form->createView(), "recette" => $recette ]);
     }
 
     /**

@@ -51,7 +51,7 @@ class AjoutRecetteFormType extends AbstractType
             ])
             ->add('img', FileType::class, [
                 'mapped' => false,
-                'required' => true,
+                'required' => false,
                 'label' => 'Image',
                 'attr' => ['class' => 'form-control']
             ])

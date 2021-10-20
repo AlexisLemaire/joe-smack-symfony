@@ -3,9 +3,9 @@
 {% block title %} Mettre à jour la recette {% endblock %}
 
 {% block body %}
-    <h1>Mettre à jour la recette</h1>
-
     {{ form_start(form) }}
+        <h1 class="h3 mb-3 font-weight-normal">Mettre à jour la recette : {{ recette.title }}</h1>
+        <strong> Vous pouvez modifier une recette via cette page. La modification ne sera validé que si votre compte possède le rôle administrateur. </strong> <br /><br />
         {{ form_row(form.title) }}
         {{ form_row(form.type) }}
         {{ form_row(form.prix) }}
@@ -14,6 +14,6 @@
         {{ form_row(form.ingredients) }}
         {{ form_row(form.img) }}
         {{ form_row(form.text) }}
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn w-100 btn-primary">Mettre à jour</button>
     {{ form_end(form) }}
 {% endblock %}
