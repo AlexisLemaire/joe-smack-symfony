@@ -2,6 +2,10 @@
 
 {% block title %} Home {% endblock %}
 
+{% block stylesheets %} 
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     <img src="{{ asset('img/joe-smack-home.jpg') }}" />
 {% endblock %}

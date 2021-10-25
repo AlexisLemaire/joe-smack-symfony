@@ -2,6 +2,10 @@
 
 {% block title %} Inscription {% endblock %}
 
+{% block stylesheets %} 
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>

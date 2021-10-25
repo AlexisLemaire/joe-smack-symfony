@@ -2,6 +2,10 @@
 
 {% block title %} Ajouter une recette {% endblock %}
 
+{% block stylesheets %} 
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 {{ form_start(form) }}
     <h1 class="h3 mb-3 font-weight-normal">Ajouter une recette</h1>

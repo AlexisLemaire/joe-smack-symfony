@@ -2,14 +2,14 @@
 
 {% block title %} Liste des {{ type }}s {% endblock %}
 
+{% block stylesheets %} 
+    <link href="{{ asset('css/recette-list.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
 {% for recette in recettes %}
     <div class="RC-List">
-        <a href="{{ path("recettes_recette", {id: recette.id}) }}"> 
-            <button class="w-100 m-2 btn btn-primary"> 
-                {{ recette.title }}  
-            </button>
-        </a>
+        <a href="{{ path("recettes_recette", {id: recette.id}) }}"> <button> {{ recette.title }} </button> </a>
         <img src="{{ asset('img/'~recette.imgName) }}" />
     </div>
     <br />

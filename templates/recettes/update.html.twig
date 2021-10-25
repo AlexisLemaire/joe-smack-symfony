@@ -2,6 +2,10 @@
 
 {% block title %} Mettre à jour la recette {% endblock %}
 
+{% block stylesheets %} 
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
     {{ form_start(form) }}
         <h1 class="h3 mb-3 font-weight-normal">Mettre à jour la recette : {{ recette.title }}</h1>

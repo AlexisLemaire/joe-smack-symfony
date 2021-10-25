@@ -17,17 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class RecettesController extends AbstractController
 {
     /**
-     * @Route("/home", name="home");
-     */
-    public function home(): Response
-    {
-        if($this->getUser() && !$this->getUser()->isVerified()){
-            return $this->redirectToRoute("app_logout");
-        }
-        return $this->render('recettes/home.html.twig');
-    }
-
-    /**
      * @Route("/recette/{id}", name="recette")
      */
     public function recette($id, RecettesRepository $repo): Response
