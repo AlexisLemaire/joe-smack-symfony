@@ -21,10 +21,9 @@
             <a href="{{ path('recettes_list', {type: "plat"}) }}"> <button>Plat</button></a>
             <a href="{{ path('recettes_list', {type: "patisserie"}) }}"> <button>Patisserie</button></a>
             <a href="{{ path('recettes_list', {type: "az"}) }}"> <button>A-Z</button></a>
-            <a href="{{ path('recettes_ajout') }}"> <button class="fa fa-plus-square-o btn-small"></button></a>
+            <a href="{{ path('recettes_ajout') }}"> <button class="fa fa-cutlery btn-small"></button></a>
             {% if app.user is null %}
-                <a href="{{ path('app_register') }}"><button class="fa fa-share-square-o btn-small"></button></a>
-                <a href="{{ path('app_login') }}"><button class="fa fa-sign-in btn-small"></button></a>
+                <a href="{{ path('app_login') }}"><button class="fa fa-user btn-small"></button></a>
             {% else %}
                 <a href="{{ path('app_logout') }}"><button class="fa fa-sign-out btn-small"></button></a>
             {% endif %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resend a verification email{% endblock %}
+
+{% block stylesheets %} 
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    
+
+    {{ form_start(requestForm) }}
+        <h1>Account verify</h1>
+        {{ form_row(requestForm.email) }}
+
+        <div> Enter your email address and we will send you a link to verify your account.</div>
+        <button class="btn btn-primary">Send</button>
+    {{ form_end(requestForm) }}
+{% endblock %}

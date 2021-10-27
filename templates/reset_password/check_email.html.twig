@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+{% block stylesheets %} 
+    <link href="{{ asset('css/recette.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+    <div class="RC-Item">
+        If an account matching your email exists, then an email was just sent to you.
+        This link will expire in 1 hour.
+    </div>
+{% endblock %}

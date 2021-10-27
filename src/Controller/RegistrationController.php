@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\UserJoeSmack;
 use App\Form\RegistrationFormType;
+use App\Form\ResetPasswordRequestFormType;
 use App\Repository\UserJoeSmackRepository;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -46,7 +47,6 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('alexisethan.lemaire@gmail.com', 'Alexis Lemaire'))
@@ -54,7 +54,6 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_login');
         }
@@ -91,5 +90,32 @@ class RegistrationController extends AbstractController
 
         $this->addFlash('success', 'Your email address has been verified.');
         return $this->redirectToRoute('app_login');
+    }
+
+    /**
+     * @Route("/email/resend", name="email_resend")
+     */
+    public function resendMail(Request $request, UserJoeSmackRepository $repo): Response
+    {
+        $form = $this->createForm(ResetPasswordRequestFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $repo->findOneBy(["email" => $form->get('email')->getData()]);
+
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            (new TemplatedEmail())
+                ->from(new Address('alexisethan.lemaire@gmail.com', 'Alexis Lemaire'))
+                ->to($user->getEmail())
+                ->subject('Please Confirm your Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
+
+            return $this->redirectToRoute("app_check_email");
+        }
+
+        return $this->render('registration/resend_email.html.twig', [
+            'requestForm' => $form->createView(),
+        ]);
     }
 }
