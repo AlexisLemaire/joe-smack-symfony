@@ -21,3 +21,6 @@
 
 #### NODE DEPENDENCIES ###
 node_modules
+
+### CYPRESS FOLDER ###
+cypress
