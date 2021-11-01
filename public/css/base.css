@@ -2,7 +2,7 @@ nav {
     height: 75px;
     box-shadow: 5px 3px 5px grey;
     border: 4px solid;
-    padding: 1%;
+    padding-top: 0.3%;
 }
 
 nav a {
@@ -26,7 +26,9 @@ nav .btn-small {
 }
 
 nav button:hover {
-    background-color: rgb(70, 69, 69);
+    background-color: white;
+    border: 4px double black;
+    color: black;
 }
 
 nav img {
@@ -37,9 +39,7 @@ nav img {
 
 main {
     padding: 1%;
-    margin: 0.4%;
-    height: 630px;
-    width: 99%;
+    height: 89.5vh;
     background-size: 100% 100%;
     text-align: center;
     overflow-y: scroll;
