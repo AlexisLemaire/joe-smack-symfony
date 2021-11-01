@@ -26,8 +26,23 @@
 
 .RC-List img {
     width: 60%;
-    height: 450px;
+    height: 90%;
     margin-left: 20%;
     margin-right: 20%;
-    margin-top: 1%;
+    margin-top: 2%;
+}
+
+@media screen and (max-width: 960px) {
+    .RC-List {
+        width: 90%;
+        height: 50%;
+        margin-left: 5%;
+        padding: 8%;
+    }
+
+    .RC-List img {
+        width: 80%;
+        height: 90%;
+        margin-left: 10%;
+    }
 }

@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('gateau.png') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
         <link href="{{ asset('css/base.css') }}" rel="stylesheet">
@@ -19,7 +21,10 @@
             <a href="{{ path('home') }}"> <img src="{{ asset('img/joe-smack.jpg') }}" /> </a>
             <a href="{{ path('recettes_list', {type: "entree"}) }}"> <button>Entree</button></a>
             <a href="{{ path('recettes_list', {type: "plat"}) }}"> <button>Plat</button></a>
-            <a href="{{ path('recettes_list', {type: "patisserie"}) }}"> <button>Patisserie</button></a>
+            <a href="{{ path('recettes_list', {type: "patisserie"}) }}"> 
+                <button class="d-none d-sm-inline">Patisserie</button>
+                <button class="d-sm-none">Pat</button>
+            </a>
             <a href="{{ path('recettes_list', {type: "az"}) }}"> <button>A-Z</button></a>
             <a href="{{ path('recettes_ajout') }}"> <button class="fa fa-cutlery btn-small"></button></a>
             {% if app.user is null %}
