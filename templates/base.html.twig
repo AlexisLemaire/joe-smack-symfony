@@ -31,6 +31,7 @@
                 <a href="{{ path('app_login') }}"><button class="fa fa-user btn-small"></button></a>
             {% else %}
                 <a href="{{ path('app_logout') }}"><button class="fa fa-sign-out btn-small"></button></a>
+                <a href="{{ path('delete_account') }}" class="d-none d-sm-inline"><button class="fa fa-user-times btn-small"></button></a>
             {% endif %}
         </nav>
 

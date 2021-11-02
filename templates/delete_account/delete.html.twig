@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Delete your account{% endblock %}
+
+{% block stylesheets %} 
+    <link href="{{ asset('css/forms.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        <h1>Delete your account</h1>
+
+        {{ form_row(form.email) }}
+        <div> To delete your account, enter the your adress email above : <strong>{{ app.user.email }}</strong> </div>
+
+        <button class="btn btn-primary">Delete</button>
+    {{ form_end(form) }}
+{% endblock %}
