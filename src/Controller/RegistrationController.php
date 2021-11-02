@@ -7,6 +7,7 @@ use App\Form\RegistrationFormType;
 use App\Form\ResetPasswordRequestFormType;
 use App\Repository\UserJoeSmackRepository;
 use App\Security\EmailVerifier;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -118,5 +119,16 @@ class RegistrationController extends AbstractController
         return $this->render('registration/resend_email.html.twig', [
             'requestForm' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/cypressVerifyAccount191283238912830390128390128902489218401/{email}", name="cypress_verify_account")
+     */
+    public function cypressVerifyAccount(EntityManagerInterface $em, UserJoeSmackRepository $repo, $email): Response
+    {
+        $userToVerify = $repo->findOneBy(['email' => $email]);
+        $userToVerify->setIsVerified(true);
+        $em->flush();
+        return $this->redirectToRoute("app_login");
     }
 }
