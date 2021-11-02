@@ -24,6 +24,7 @@ class DeleteAccountController extends AbstractController
             if($form->get('email')->getData() === $user->getEmail()){
                 $em->remove($user);
                 $em->flush();
+                $this->addFlash("success", "Votre compte a bien été supprimé");
                 return $this->redirectToRoute('app_login');
             } else {
                 $this->addFlash("danger", "L'adresse email entrée n'est pas la bonne");
