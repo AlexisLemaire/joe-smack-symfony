@@ -53,14 +53,22 @@ describe("userExperience", () => {
     });
 
     it('should verify email', () => {
-        cy.visit("https://joe-smack-symfony.herokuapp.com/cypressVerifyAccount191283238912830390128390128902489218401/{test89215@gmail.com}");
+        cy.visit("https://joe-smack-symfony.herokuapp.com/cypressVerifyAccount191283238912830390128390128902489218401/test89215@gmail.com");
     });
 
-    // it('should login', () => {
-        
-    // });
+    it('should login', () => {
+        cy.get("form input").eq(0).type("test89215@gmail.com");
+        cy.get("form input").eq(1).type("FakePassword");
+        cy.get("form button").click();
+        cy.get("nav a").eq(7).click();
+    });
 
-    // it('should delete account', () => {
-        
-    // });
+    it('should delete account', () => {
+        cy.get("form input").type("test89215@gmail.com");
+        cy.get("form button").click();
+        cy.get("form input").eq(0).type("test89215@gmail.com");
+        cy.get("form input").eq(1).type("FakePassword");
+        cy.get("form button").click();
+        cy.get("div").should("have.attr","class","alert-danger");
+    });
 });
