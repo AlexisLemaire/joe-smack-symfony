@@ -51,8 +51,8 @@ main {
     }
 
     nav button {
-        margin-left: 0.5%;
-        width: 16%;
+        margin-left: 0.4%;
+        width: 15.5%;
         height: 90%;
     }
 
@@ -62,5 +62,10 @@ main {
 
     nav img {
         width: 10%;
+    }
+
+    main {
+        height: 91.3vh;
+        width: 100vw;
     }
 }
