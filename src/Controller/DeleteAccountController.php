@@ -19,7 +19,7 @@ class DeleteAccountController extends AbstractController
     {
         $user = $this->getUser();
         if(!$user){
-            $this->redirectToRoute("app_login");
+            return $this->redirectToRoute("app_login");
         }
 
         $form = $this->createForm(ResetPasswordRequestFormType::class);
