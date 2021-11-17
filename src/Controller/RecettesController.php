@@ -22,7 +22,14 @@ class RecettesController extends AbstractController
     public function recette($id, RecettesRepository $repo): Response
     {
         $recette = $repo->find($id);
-        return $this->render('recettes/recette.html.twig', [ "recette" => $recette ]);
+        if(!$recette){
+            $response = new Response();
+            $response->headers->set('Content-Type', 'text/html');
+            $response->setStatusCode(404);
+            return $response;
+        } else {
+            return $this->render('recettes/recette.html.twig', [ "recette" => $recette ]);
+        } 
     }
 
     /**
